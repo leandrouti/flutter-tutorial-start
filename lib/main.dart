@@ -13,18 +13,32 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
+  var _totalScore = 0;
+
   final _questions = const [
     {
       'questionText': 'What\'s your favorite color?',
-      'answers': ['Black', 'Red', 'Green', 'White'],
+      'answers': [
+        {'text': 'Black', 'score': 1},
+        {'text': 'Red', 'score': 2},
+        {'text': 'Green', 'score': 3},
+        {'text': 'White', 'score': 4}
+      ],
     },
     {
       'questionText': 'What\'s your favorite animal?',
-      'answers': ['Rabbit', 'Snake', 'Elephant', 'Lion'],
+      'answers': [
+        {'text': 'Rabbit', 'score': 1},
+        {'text': 'Snake', 'score': 2},
+        {'text': 'Elephant', 'score': 3},
+        {'text': 'Lion', 'score': 4}
+      ],
     },
   ];
 
-  void _buttonPressed() {
+  void _buttonPressed(int score) {
+    this._totalScore += score;
+    print(this._totalScore);
     print('button presseed');
 
     setState(() {
@@ -45,7 +59,7 @@ class _MyAppState extends State<MyApp> {
                 questionIndex: this._questionIndex,
                 questions: this._questions,
               )
-            : Result('You did it!'),
+            : Result(this._totalScore),
       ),
     );
   }
